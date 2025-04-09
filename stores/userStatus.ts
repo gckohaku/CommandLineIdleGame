@@ -10,13 +10,13 @@ export const userStatusStore = defineStore('userStatusStore', () => {
 
 	function calcBattleStatus() {
 		const hpLevel = battleStatusLevels.value.hitPointLevel;
-		battleStatus.value.hitPoint = 100 + (hpLevel - 1) * 10;
+		battleStatus.value.hitPoint = 100 + (hpLevel - 1) * 30;
 
 		const attackLevel = battleStatusLevels.value.attackLevel;
-		battleStatus.value.attack = 1 * attackLevel;
+		battleStatus.value.attack = 10 * attackLevel;
 
 		const defenseLevel = battleStatusLevels.value.defenseLevel;
-		battleStatus.value.defense = 1 * defenseLevel;
+		battleStatus.value.defense = 10 * defenseLevel;
 
 		const agilityLevel = battleStatusLevels.value.agilityLevel;
 		battleStatus.value.agility = 1 + 0.01 * (agilityLevel - 1);

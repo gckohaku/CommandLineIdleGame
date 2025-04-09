@@ -5,14 +5,18 @@ export const normalCommands: { [key: string]: (args: CommandArgs) => void } = {
 	rate: rateCommand,
 }
 
-function helpCommand(args: CommandArgs): void {
-	const cmdScreen = cmdScreenStore();
+if (import.meta.env.DEV) {
+	normalCommands.debug = debugCommand;
+}
 
-	cmdScreen.screen = "まだコマンド全然ないよ～<br>いまがんばって開発中だからまってね";
+function helpCommand(args: CommandArgs): void {
+	const cmdScreen = commandScreenStore();
+
+	cmdScreen.writeLine("まだコマンド全然ないよ～<br>いまがんばって開発中だからまってね");
 }
 
 function mineCommand(area: CommandArgs): void {
-	const cmdScreen = cmdScreenStore();
+	const cmdScreen = commandScreenStore();
 
 	const userStatus = userStatusStore();
 	const value: number = Math.floor(Math.random() * 10);
@@ -20,31 +24,41 @@ function mineCommand(area: CommandArgs): void {
 	const fragment = getFragments(value);
 	userStatus.fragments += fragment;
 
-	cmdScreen.screen = `You got ${fragment} fragment`;
+	cmdScreen.write(`You got ${fragment} fragment`);;
 
 	if (fragment !== 1) {
-		cmdScreen.screen += "s";
+		cmdScreen.write("s");
 	}
 
-	cmdScreen.screen += ".";
+	cmdScreen.writeLine(".");
 }
 
 function statusCommand(args: CommandArgs): void {
-	const cmdScreen = cmdScreenStore();
+	const cmdScreen = commandScreenStore();
 	const userStatus = userStatusStore();
 
-	cmdScreen.screen = `fragments: ${userStatus.fragments}`;
+	cmdScreen.writeLine(`fragments: ${userStatus.fragments}`);;
 }
 
 function rateCommand(args: CommandArgs): void {
-	const cmdScreen = cmdScreenStore();
+	const cmdScreen = commandScreenStore();
 	const MaterialRateManager = materialRateManagerStore();
 
-	cmdScreen.screen = `Material Rate: ${MaterialRateManager.rate}`;
+	cmdScreen.writeLine(`Material Rate: ${MaterialRateManager.rate}`);
 }
 
 function battleCommand(args: CommandArgs): void {
 
+}
+
+function debugCommand(args: CommandArgs): void {
+	const cmdScreen = commandScreenStore();
+	const cmdStatus = commandLineStateStore();
+
+	cmdScreen.writeLine("test", 12345.6789, true, false);
+	cmdScreen.writeLine({data: 123, state: "normal", flag: true});
+	
+	cmdStatus.state = "battle";
 }
 
 function getFragments(value: number): number {

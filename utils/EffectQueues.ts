@@ -1,15 +1,23 @@
+import type { SkillQueueInfo } from "#imports";
+
 export interface EffectQueues {
-	hpEffectQueue: SkillQueueInfo[];
-	attackEffectQueue: SkillQueueInfo[];
-	defenseEffectQueue: SkillQueueInfo[];
-	agilityEffectQueue: SkillQueueInfo[];
+	increaseMaxHpQueue: SkillQueueInfo[];
+	attackAddSubQueue: SkillQueueInfo[];
+	attackMultiplyQueue: SkillQueueInfo[];
+	defenseAddSubQueue: SkillQueueInfo[];
+	defenseMultiplyQueue: SkillQueueInfo[];
+	agilityAddSubQueue: SkillQueueInfo[];
+	agilityMultiplyQueue: SkillQueueInfo[];
 }
 
 export const makeDefaultEffectQueues = (init: Partial<EffectQueues> = {}): EffectQueues => {
 	return withDefaultValues(init, {
-		hpEffectQueue: [],
-		attackEffectQueue: [],
-		defenseEffectQueue: [],
-		agilityEffectQueue: [],
+		increaseMaxHpQueue: [],
+		attackAddSubQueue: [],
+		attackMultiplyQueue: [],
+		defenseAddSubQueue: [],
+		defenseMultiplyQueue: [],
+		agilityAddSubQueue: [],
+		agilityMultiplyQueue: [],
 	});
-}
+};

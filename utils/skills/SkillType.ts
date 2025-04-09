@@ -3,12 +3,12 @@ export const skillType = {
 	avoid: "avoid",
 	heal: "heal",
 	increaseMaxHp: "increaseMaxHp",
-	strengtheningAttack: "strengtheningAttack",
-	tougheningDefense: "tougheningDefense",
-	weakenedAttack: "weakenedAttack",
-	weakenedDefense: "weakenedDefense",
-	quickeningAgility: "quickeningAgility",
-	slowedAgility: "slowedAgility"
+	attackAddSub: "attackAddSub",
+	attackMultiply: "attackMultiply",
+	defenseAddSub: "defenseAddSub",
+	defenseMultiply: "defenseMultiply",
+	agilityAddSub: "agilityAddSub",
+	agilityMultiply: "agilityMultiply",
 } as const;
 
 export type SkillType = (typeof skillType)[keyof typeof skillType];

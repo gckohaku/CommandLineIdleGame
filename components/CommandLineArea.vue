@@ -3,8 +3,8 @@
 const focusZone = ref<InstanceType<typeof HTMLDialogElement> | null>(null);
 const infoScreen = ref<InstanceType<typeof HTMLDialogElement> | null>(null);
 
-const cmdState = cmdLineStateStore();
-const cmdScreen = cmdScreenStore();
+const cmdState = commandLineStateStore();
+const cmdScreen = commandScreenStore();
 const userStatus = userStatusStore();
 
 const onCmdDisplayClick = () => {
@@ -20,12 +20,10 @@ const onCommandEnter = (e: Event) => {
 	e.preventDefault();
 
 	if (focusZone.value && infoScreen.value) {
-		cmdScreen.clear();
-
 		const commandDom = focusZone.value;
 		const command = commandDom.innerText;
 		commandDom.innerText = "";
-		cmdScreen.screen = command;
+		cmdScreen.writeLine(command);
 
 		const args: string[] = command.split(" ");
 		const currentCommands = commands.get(cmdState.state);
@@ -34,7 +32,7 @@ const onCommandEnter = (e: Event) => {
 			currentCommands[args[0]](args);
 		}
 		else {
-			cmdScreen.screen += `<br>command of "${args[0]}" is not found.`;
+			cmdScreen.writeLine(`<br>command of "${args[0]}" is not found.`);
 		}
 	}
 }
