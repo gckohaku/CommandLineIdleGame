@@ -8,8 +8,6 @@ const cmdScreen = commandScreenStore();
 const userStatus = userStatusStore();
 
 const onCmdDisplayClick = () => {
-	console.log("click");
-
 	if (focusZone.value) {
 		const commandDom = focusZone.value;
 		commandDom.focus();
@@ -38,13 +36,30 @@ const onCommandEnter = (e: Event) => {
 }
 
 onMounted(async () => {
+	if (process.env.NODE_ENV === "development") {
+		console.log("develop");
+
+		const initializeState = localStorage.getItem("initializeState");
+
+		if (initializeState === "initialized") {
+			console.log("a");
+			localStorage.setItem("initializeState", "reload");
+			console.log("page reloading");
+			location.reload();
+			return;
+		}
+	}
+
+	if (process.env.NODE_ENV === "development") {
+		localStorage.setItem("initializeState", "initialized");
+	}
+
 	await indexedDbPreparation();
 	const beforePlayDataId = await getBeforePlayDataId();
 
 	if (focusZone.value) {
 		focusZone.value.focus();
 	}
-	console.log(userStatus.battleStatusLevels);
 	cmdScreen.writeLine(userStatus);
 	cmdScreen.writeLine(beforePlayDataId);
 });
