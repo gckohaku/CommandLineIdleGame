@@ -37,11 +37,16 @@ const onCommandEnter = (e: Event) => {
 	}
 }
 
-onMounted(() => {
+onMounted(async () => {
+	await indexedDbPreparation();
+	const beforePlayDataId = await getBeforePlayDataId();
+
 	if (focusZone.value) {
 		focusZone.value.focus();
 	}
 	console.log(userStatus.battleStatusLevels);
+	cmdScreen.writeLine(userStatus);
+	cmdScreen.writeLine(beforePlayDataId);
 });
 </script>
 
@@ -62,6 +67,8 @@ onMounted(() => {
 	height: 100%;
 	color: lightgreen;
 	padding: .5rem;
+	overflow-y: scroll;
+	box-sizing: border-box;
 
 	.editable-command-aria {
 		outline: none;
