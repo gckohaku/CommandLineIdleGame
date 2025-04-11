@@ -5,6 +5,7 @@ const infoScreen = ref<InstanceType<typeof HTMLDialogElement> | null>(null);
 
 const cmdState = commandLineStateStore();
 const cmdScreen = commandScreenStore();
+const gameDataManager = gameDataManagerStore();
 const userStatus = userStatusStore();
 
 const onCmdDisplayClick = () => {
@@ -55,13 +56,12 @@ onMounted(async () => {
 	}
 
 	await indexedDbPreparation();
-	const beforePlayDataId = await getBeforePlayDataId();
+	gameDataManager.saveDataName = await getBeforePlayDataId();
 
 	if (focusZone.value) {
 		focusZone.value.focus();
 	}
 	cmdScreen.writeLine(userStatus);
-	cmdScreen.writeLine(beforePlayDataId);
 });
 </script>
 

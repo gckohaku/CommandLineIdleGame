@@ -17,6 +17,7 @@ function helpCommand(args: CommandArgs): void {
 
 function mineCommand(area: CommandArgs): void {
 	const cmdScreen = commandScreenStore();
+	const gameDataManager = gameDataManagerStore();
 
 	const userStatus = userStatusStore();
 	const value: number = Math.floor(Math.random() * 10);
@@ -31,6 +32,8 @@ function mineCommand(area: CommandArgs): void {
 	}
 
 	cmdScreen.writeLine(".");
+
+	gameDataManager.save();
 }
 
 function statusCommand(args: CommandArgs): void {
