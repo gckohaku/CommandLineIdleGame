@@ -7,21 +7,22 @@ export const commandScreenStore = defineStore("commandScreenStore", () => {
 		screen.value = "";
 	}
 
-	function write(...text: unknown[]): void {
-		for (const data of text) {
-			const dataType = typeof data;
+	function write(...data: unknown[]): void {
+		for (let i = 0; i < data.length; i++) {
+			const dataType = typeof data[i];
 			if (dataType === "string" || dataType === "number" || dataType === "boolean") {
-				screen.value += data;
+				screen.value += data[i];
+			} else {
+				screen.value += JSON.stringify(data[i], null, "  ").replaceAll("\n", "<br>").replaceAll(" ", "&nbsp;");
 			}
-			else {
-				screen.value += JSON.stringify(data, null, "  ").replaceAll("\n", "<br>").replaceAll(" ", "&nbsp;");
+			if (i < data.length - 1) {
+				screen.value += " ";
 			}
-			screen.value += " ";
 		}
 	}
 
-	function writeLine(...text: unknown[]): void {
-		write(...text);
+	function writeLine(...data: unknown[]): void {
+		write(...data);
 		write("<br>");
 	}
 

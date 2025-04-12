@@ -21,5 +21,9 @@ export const gameDataManagerStore = defineStore('gameDataManagerStore', () => {
 		await storeSaveData(saveData, saveDataName.value);
 	}
 
-	return { saveDataName, save };
+	async function getSaveDataFromIndexedDb() {
+		await getSaveData(saveDataName.value);
+	}
+
+	return { saveDataName, save, getSaveDataFromIndexedDb };
 });

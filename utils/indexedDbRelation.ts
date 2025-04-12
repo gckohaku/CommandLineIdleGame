@@ -125,7 +125,7 @@ export const storeSaveData = async (data: SaveData, id: string) => {
 };
 
 export const getSaveData = async (id: string) => {
-	return new Promise((resolve, reject) => {
+	return new Promise<void>((resolve, reject) => {
 		const request = indexedDB.open("cmd-like-idle-db");
 
 		request.onsuccess = () => {
@@ -139,6 +139,7 @@ export const getSaveData = async (id: string) => {
 				const userStatus = userStatusStore();
 				const materialRateManager = materialRateManagerStore();
 
+				// version
 				if (data.fragments) {
 					userStatus.fragments = data.fragments;
 				}
@@ -151,6 +152,9 @@ export const getSaveData = async (id: string) => {
 				if (data.rateOfMaterials) {
 					materialRateManager.rate = data.rateOfMaterials;
 				}
+				// progress
+
+				resolve();
 			};
 
 			dataRequest.onerror = (e) => {

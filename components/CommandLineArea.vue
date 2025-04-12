@@ -4,7 +4,6 @@ const focusZone = ref<InstanceType<typeof HTMLDialogElement> | null>(null);
 const infoScreen = ref<InstanceType<typeof HTMLDialogElement> | null>(null);
 
 const textSelectionState = useTextSelection();
-const {setLocale} = useI18n();
 
 const cmdState = commandLineStateStore();
 const cmdScreen = commandScreenStore();
@@ -63,14 +62,12 @@ onMounted(async () => {
 
 	await indexedDbPreparation();
 	gameDataManager.saveDataName = await getBeforePlayDataId();
+	await gameDataManager.getSaveDataFromIndexedDb();
 
 	if (focusZone.value) {
 		focusZone.value.focus();
 	}
 
-	await setLocale("en");
-
-	cmdScreen.writeLine(useNuxtApp().$i18n.t("test"));
 	cmdScreen.writeLine(userStatus);
 });
 </script>

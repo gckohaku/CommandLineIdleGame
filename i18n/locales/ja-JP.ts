@@ -1,3 +1,5 @@
-export default defineI18nLocale(async () => ({
-	test: "テスト"
-}));
+import type { i18nMessages } from "../I18nMessages";
+
+export const messagesJaJp: i18nMessages = {
+	test: "テスト",
+};

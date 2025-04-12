@@ -1,5 +1,5 @@
 export const commandLineStateStore = defineStore('commandLineStateStore', () => {
-	const state: Ref<CmdState> = ref("normal");
+	const state: Ref<CommandState> = ref("normal");
 
 	return { state };
 });
