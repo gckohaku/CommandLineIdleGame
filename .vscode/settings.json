@@ -3,6 +3,7 @@
 		"nuxt",
 		"Nuxt",
 		"pinia",
+		"vueuse",
 		"Xoroshiro",
 		"Xorshift"
 	],
