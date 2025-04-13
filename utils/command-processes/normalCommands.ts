@@ -57,10 +57,9 @@ function battleCommand(args: CommandArgs): void {
 function debugCommand(args: CommandArgs): void {
 	const cmdScreen = commandScreenStore();
 	const cmdStatus = commandLineStateStore();
-
-	cmdScreen.writeLine("test", 12345.6789, true, false);
-	cmdScreen.writeLine({data: 123, state: "normal", flag: true});
+	const battleSceneManager = battleSceneManagerStore();
 	
+	battleSceneManager.initializeStatus();
 	cmdStatus.state = "battle";
 }
 

@@ -1,5 +1,5 @@
 export interface BattleSceneStatus {
-	readonly defaultStatus: Readonly<BattleStatus>;
+	defaultStatus: Readonly<BattleStatus>;
 	currentStatus: BattleStatus;
 	maxHitPoint: number;
 	attribute: Attribute;

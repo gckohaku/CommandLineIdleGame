@@ -7,7 +7,7 @@ export const battleCommands: { [key: string]: (args: CommandArgs) => void } = {
 
 function skillCommand(args: CommandArgs): void {
 	const cmdScreen = commandScreenStore();
-	const battleSceneStatuses = battleSceneStatusesStore();
+	const battleSceneStatuses = battleSceneManagerStore();
 
 	if (args.length <= 0) {
 		cmdScreen.writeLine("スキルのスロット番号を指定してください");
@@ -28,5 +28,7 @@ function skillCommand(args: CommandArgs): void {
 }
 
 function infoCommand(args: CommandArgs): void {
-	
+	const battleSceneStatuses = battleSceneManagerStore();
+
+	battleSceneStatuses.viewStatus();
 }
