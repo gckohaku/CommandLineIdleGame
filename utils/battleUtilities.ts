@@ -7,9 +7,9 @@ export function calcDamage(attackValue: number, attacker: Readonly<BattleSceneSt
 
 	// バフとデバフの適用 バフとデバフを分けずに適用された順番に処理する
 	const attackAddValue = attacker.effectQueues.attackAddSubQueue.reduce<number>((accumulator, current) => accumulator + current.value, 0);
-	const attackMultiplyValue = attacker.effectQueues.attackMultiplyQueue.reduce<number>((accumulator, current) => accumulator + current.value, 0);
+	const attackMultiplyValue = attacker.effectQueues.attackMultiplyQueue.reduce<number>((accumulator, current) => accumulator * current.value, 1);
 	const defenseAddValue = defender.effectQueues.defenseAddSubQueue.reduce<number>((accumulator, current) => accumulator + current.value, 0);
-	const defenseMultiplyValue = defender.effectQueues.defenseMultiplyQueue.reduce<number>((accumulator, current) => accumulator + current.value, 0);
+	const defenseMultiplyValue = defender.effectQueues.defenseMultiplyQueue.reduce<number>((accumulator, current) => accumulator * current.value, 1);
 
 	const calculatedAttack = (attack + attackAddValue) * attackMultiplyValue;
 	const calculatedDefense = (defense + defenseAddValue) * defenseMultiplyValue;

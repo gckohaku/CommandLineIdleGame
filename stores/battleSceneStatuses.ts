@@ -70,5 +70,9 @@ export const battleSceneManagerStore = defineStore("battleSceneManagerStore", ()
 		cmdScreen.writeLine(`${JSON.stringify(enemyBattleStatus.value[0].currentStatus)}`);
 	}
 
-	return { userBattleStatus, enemyBattleStatus, initializeStatus, userSkill, enemySkill, viewStatus };
+	function playTurn() {
+
+	}
+
+	return { userBattleStatus, enemyBattleStatus, initializeStatus, userSkill, enemySkill, viewStatus, playTurn };
 });
