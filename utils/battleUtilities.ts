@@ -16,7 +16,7 @@ export function calcDamage(attackValue: number, attacker: Readonly<BattleSceneSt
 
 	const denominatorValue = 1 + (calculatedAttack / calculatedDefense) ** 2;
 
-	return calculatedAttack * (calculatedAttack / denominatorValue) * getRandomDamageMultiply() * attributeMultiply;
+	return calculatedAttack / denominatorValue * getRandomDamageMultiply() * attributeMultiply;
 }
 
 export function getDamageMultiplyByAttribute(attackerAttribute: Attribute, defenderAttribute: Attribute): number {
