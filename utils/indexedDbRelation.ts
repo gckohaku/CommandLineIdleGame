@@ -152,7 +152,9 @@ export const getSaveData = async (id: string) => {
 				if (data.rateOfMaterials) {
 					materialRateManager.rate = data.rateOfMaterials;
 				}
-				// progress
+				if (data.progresses) {
+					userStatus.progresses = progressesWithDefault(data.progresses);
+				}
 
 				resolve();
 			};

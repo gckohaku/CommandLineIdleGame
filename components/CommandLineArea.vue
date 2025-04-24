@@ -29,7 +29,7 @@ const onCommandEnter = (e: Event) => {
 		commandDom.innerText = "";
 		cmdScreen.writeLine(command);
 
-		const args: string[] = command.split(" ");
+		const args: string[] = command.trim().replace(/\s{2,}/g, " ").split(" ");
 		const currentCommands = commands.get(cmdState.state);
 
 		if (currentCommands && args[0] in currentCommands) {
@@ -67,7 +67,7 @@ onMounted(async () => {
 	if (focusZone.value) {
 		focusZone.value.focus();
 	}
-
+	
 	cmdScreen.writeLine(userStatus);
 });
 </script>
