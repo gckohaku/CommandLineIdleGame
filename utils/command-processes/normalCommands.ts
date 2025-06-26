@@ -1,6 +1,8 @@
 import * as i18n from "@/i18n";
 
 export const normalCommands: { [key: string]: (args: CommandArgs) => void } = {
+	clear: clearCommand,
+	cls: clearCommand,
 	help: helpCommand,
 	mine: mineCommand,
 	status: statusCommand,
@@ -12,6 +14,11 @@ export const normalCommands: { [key: string]: (args: CommandArgs) => void } = {
 
 if (import.meta.env.DEV) {
 	normalCommands.debug = debugCommand;
+}
+
+function clearCommand(args: CommandArgs): void {
+	const cmdScreen = commandScreenStore();
+	cmdScreen.clear();
 }
 
 function helpCommand(args: CommandArgs): void {
