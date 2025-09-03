@@ -1,0 +1,1 @@
+export const enemy0001_alpha = "";

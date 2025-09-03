@@ -3,20 +3,22 @@ import type { SkillInfo } from "~/utils/SkillInfo";
 export const attackAddSub_smallEnergy: SkillInfo = {
 	title: "少しの力",
 	description: "攻撃力を X 増加させる",
+	canBeDuplicated: false,
+	isUltimate: false,
 	type: "attackAddSub",
 	count: 3,
 	necessaryAgility: 1.2,
 	attribute: attribute.none,
 	action(slotNumber, active, passive) {
-		const addValue = this.multiplyBySlot.X[slotNumber];
+		const addValue = this.valueBySlot.X[slotNumber];
 		active.effectQueues.attackAddSubQueue.push({
 			skillInfo: this,
-			value: this.multiplyBySlot.X[slotNumber],
+			value: this.valueBySlot.X[slotNumber],
 			slotNumber: slotNumber,
 			remainCount: this.count,
 		});
 	},
-	multiplyBySlot: {
+	valueBySlot: {
 		X: {
 			1: 50,
 			2: 50,

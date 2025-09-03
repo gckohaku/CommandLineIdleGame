@@ -2,7 +2,6 @@ export interface SkillFormation {
 	name: string;
 	description: string;
 	slots: {
-		0?: SkillInfo;
 		1: SkillInfo;
 		2: SkillInfo;
 		3: SkillInfo;
@@ -12,6 +11,7 @@ export interface SkillFormation {
 		7: SkillInfo;
 		8: SkillInfo;
 		9: SkillInfo;
+		0?: SkillInfo;
 	};
 	necessaryAgility: number;
 }

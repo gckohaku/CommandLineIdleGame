@@ -32,6 +32,10 @@ export const battleSceneManagerStore = defineStore("battleSceneManagerStore", ()
 		});
 	}
 
+	function setUserStatus(status: BattleStatus, skills: SkillSlots) {
+		
+	}
+
 	function userSkill(skillNumber: keyof SkillFormation["slots"]) {
 		const userStatus = userBattleStatus.value;
 

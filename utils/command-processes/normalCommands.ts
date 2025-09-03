@@ -161,7 +161,10 @@ function debugCommand(args: CommandArgs): void {
 		else {
 			cmdScreen.writeLine("not found target");
 		}
-	} else {
+	} else if (debugContent === "testi18n") {
+		cmdScreen.writeLine(i18n.replaceFromKeyString("skills.attackAddSub001_smallEnergy"));
+	}
+	else {
 		cmdScreen.writeLine(`not found debug command of ${debugContent}`);
 	}
 

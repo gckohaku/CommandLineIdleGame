@@ -3,16 +3,18 @@ import * as BattleUtilities from "@/utils/battleUtilities";
 export const attack001_normal: SkillInfo = {
 	title: "通常攻撃",
 	description: "攻撃力等倍の無属性の攻撃",
+	canBeDuplicated: true,
+	isUltimate: false,
 	type: skillType.attack,
 	count: 0,
 	necessaryAgility: 1.0,
 	attribute: attribute.none,
 	action(slotNumber, active, passive) {
-		const attackValue = active.currentStatus.attack * this.multiplyBySlot.X[slotNumber];
+		const attackValue = active.currentStatus.attack * this.valueBySlot.X[slotNumber];
 		const damage = BattleUtilities.calcDamage(attackValue, active, passive);
 		passive.currentStatus.hitPoint -= damage;
 	},
-	multiplyBySlot: {
+	valueBySlot: {
 		X: {
 			1: 1.0,
 			2: 1.0,

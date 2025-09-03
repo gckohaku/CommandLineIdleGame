@@ -20,15 +20,7 @@ export function calcDamage(attackValue: number, attacker: Readonly<BattleSceneSt
 }
 
 export function getDamageMultiplyByAttribute(attackerAttribute: Attribute, defenderAttribute: Attribute): number {
-	if ((defenderAttribute - attackerAttribute) % 5 === 2) {
-		return 1.2;
-	}
-
-	if ((defenderAttribute - attackerAttribute) % 5 === 3) {
-		return 0.8;
-	}
-
-	return 1;
+	return damageMultiplierData[attackerAttribute][defenderAttribute];
 }
 
 export function getRandomDamageMultiply(): number {

@@ -1,6 +1,6 @@
 export interface BattleEntityInfo {
 	status: BattleStatus;
-	agility: number;
 	attribute: Attribute;
+	skills: SkillSlots;
 	effects: EffectQueues;
 }
